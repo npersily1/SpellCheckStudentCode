@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * for Adventures in Algorithms
  * At Menlo School in Atherton, CA
  *
- * Completed by: [YOUR NAME HERE]
+ * Completed by: [Noah Persily]
  * */
 
 public class SpellCheck {
@@ -26,7 +26,7 @@ public class SpellCheck {
         int col = dictionary[0].charAt(1) - 'a';
 
         for (int i = 0; i < dictionary.length; i++) {
-             if(!dictionary[i].substring(0,2).equals(dictionary[map[row][col]])) {
+             if(!(dictionary[i].substring(0,2).equals(dictionary[map[row][col]].substring(0,2)))) {
 
                 row = dictionary[i].charAt(0) - 'a';
                 col =  dictionary[i].charAt(1) - 'a';
@@ -34,7 +34,36 @@ public class SpellCheck {
 
             }
         }
+        ArrayList<String> incorrect = new ArrayList<>();
+        for (int i = 0; i < text.length; i++) {
+            int start = map[text[i].charAt(0) - 'a'][text[i].charAt(1) - 'a'];
+            int end;
+            if(text[i].charAt(1) == 'z') {
+                 end = map[text[i].charAt(0) - 'a' + 1][0];
+            } else   {
+                 end =  map[text[i].charAt(0) - 'a'][text[i].charAt(1) - 'a' + 1];
+            }
+            while(start != end) {
 
+                int middle = (start + end) / 2;
+                if(text[i].compareTo(dictionary[middle]) > 0) {
+                    end = middle;
+                } else if (text[i].compareTo(dictionary[middle]) < 0) {
+                    start = middle;
+                }
+                else {
+                    break;
+                }
+
+
+            }
+            incorrect.add(text[i]);
+
+
+        }
+
+        String[] s = new String[incorrect.size()];
+        incorrect.toArray(s);
         return null;
     }
 
