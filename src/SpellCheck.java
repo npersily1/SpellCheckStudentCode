@@ -55,24 +55,30 @@ public class SpellCheck {
             int second = text[i].charAt(1) - 'a';
 
             if (map[first][second] == -1) {
+                incorrect.add(text[i]);
                 continue;
             }
 
             int start = map[first][second];
             int end = 0;
             for (int j = 1 + second; j < 26; j++) {
-                if (map[first][j] != 0) {
+                if (map[first][j] >= 0) {
                     end = map[first][j];
                     break;
                 }
             }
+            boolean doubleBreak = false;
             if (end == 0) {
                 for (int j = first + 1; j < 26; j++) {
                     for (int k = 0; k < 26; k++) {
-                        if (map[j][k] != 0) {
+                        if (map[j][k] >= 0) {
                             end = map[j][k];
+                            doubleBreak = true;
                             break;
                         }
+                    }
+                    if (doubleBreak){
+                        break;
                     }
                 }
             }
@@ -81,13 +87,14 @@ public class SpellCheck {
             while (start <= end) {
 
                 int middle = (start + end) / 2;
-                if (text[i].compareTo(dictionary[middle]) > 0) {
-                    end = middle - 1;
-                } else if (text[i].compareTo(dictionary[middle]) < 0) {
-                    start = middle + 1;
-                } else {
+                if(text[i].compareTo(dictionary[middle]) == 0) {
                     isCorrect = true;
                     break;
+                }
+                else if (text[i].compareTo(dictionary[middle]) > 0) {
+                    end = middle - 1;
+                } else {
+                    start = middle + 1;
                 }
 
 
