@@ -23,21 +23,30 @@ public class SpellCheck {
         Node root = new Node();
         Trie dict = new Trie(root);
 
+        Node incorrectRoot = new Node();
+        Trie incorrect = new Trie(incorrectRoot);
+
+        ArrayList<String> incorrectList = new ArrayList<>();
 
 
         for (int i = 0; i < dictionary.length; i++) {
             dict.insert(dictionary[i]);
         }
-        for (int i = 0; i < ; i++) {
-            
+
+        for (int i = 0; i < text.length; i++) {
+            if (text[i].equals("outgrabe")) {
+                int j = 0;
+            }
+            if (!dict.find(text[i])) {
+                if (!incorrect.find(text[i])) {
+                    incorrect.insert(text[i]);
+                    incorrectList.add(text[i]);
+                }
+            }
+
         }
 
-
-
-
-
-
-        return null;
+        return incorrectList.toArray(new String[incorrectList.size()]);
 
     }
 }
