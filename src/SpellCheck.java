@@ -22,23 +22,37 @@ public class SpellCheck {
     public String[] checkWords(String[] text, String[] dictionary) {
 
         return checkWordsTst(text,dictionary);
+ //      return checkWordsTrie(text,dictionary);
     }
     public String[] checkWordsTrie(String[] text, String[] dictionary) {
+
+
+        // Trie for dictionary
         Node root = new Node();
         Trie dict = new Trie(root);
 
+        // Trie for incorrect words
         Node incorrectRoot = new Node();
         Trie incorrect = new Trie(incorrectRoot);
 
+        // ArrayList to be later converted into array to return
         ArrayList<String> incorrectList = new ArrayList<>();
 
+        // Add everyword to the dict
         for (int i = 0; i < dictionary.length; i++) {
             dict.insert(dictionary[i]);
         }
+
+        // For every word
         for (int i = 0; i < text.length; i++) {
+            
+            // If it is not in the dictionary
             if (!dict.find(text[i])) {
+                // If it is not already in the list of incorrect words.
                 if (!incorrect.find(text[i])) {
+                    // Add it to the ArrayList
                     incorrectList.add(text[i]);
+                    // Add it to the Tri
                     incorrect.insert(text[i]);
                 }
             }
