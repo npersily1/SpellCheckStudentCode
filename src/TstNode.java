@@ -1,5 +1,5 @@
 public class TstNode {
-    private char c;
+    private char letter;
     private TstNode lessThan;
     private TstNode equals;
     private TstNode greaterThan;
@@ -8,16 +8,16 @@ public class TstNode {
     public TstNode() {
 
     }
-    public TstNode(char c) {
-        this.c = c;
+    public TstNode(char letter) {
+        this.letter = letter;
     }
 
-    public char getC() {
-        return c;
+    public char getLetter() {
+        return letter;
     }
 
-    public void setC(char c) {
-        this.c = c;
+    public void setLetter(char letter) {
+        this.letter = letter;
     }
 
     public TstNode getLessThan() {

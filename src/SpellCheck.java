@@ -21,8 +21,8 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary) {
 
-        return checkWordsTst(text,dictionary);
- //      return checkWordsTrie(text,dictionary);
+       // return checkWordsTst(text,dictionary);
+       return checkWordsTrie(text,dictionary);
     }
     public String[] checkWordsTrie(String[] text, String[] dictionary) {
 
