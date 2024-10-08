@@ -185,7 +185,7 @@ lafew
 parolles
 rynaldo
 violenta
-letter
+c
 abandon'd
 stretch'd
 narbon
@@ -2687,7 +2687,7 @@ appelons
 écoutez
 dites
 moi
-letter'est
+c'est
 dit
 l'anglais
 coude

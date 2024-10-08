@@ -10,37 +10,30 @@ public class Tst {
     }
 
     public void insert(String s, TstNode n, int length) {
-        // If a null node
 
-        if (n == null) {
-            // Create a new node with the first letter
-            n = new TstNode(s.charAt(0));
-            // Create a straight chain of nodes and set the last to be true
-            creatChain(s.substring(1), n).setWord(true);
-            return;
-        }
-        if (length == 0) {
+        if (length == 1) {
             n.setWord(true);
             return;
         }
 
         if (s.charAt(0) > n.getLetter()) {
+            if(n.getGreaterThan() == null) {
+                n.setGreaterThan(new TstNode(s.charAt(0)));
+            }
             insert(s, n.getGreaterThan(), length);
         } else if (s.charAt(0) == n.getLetter()) {
+            if(n.getEquals() == null) {
+                n.setEquals(new TstNode(s.charAt(1)));
+            }
             insert(s.substring(1), n.getEquals(), length - 1);
         } else {
+            if(n.getLessThan() == null) {
+                n.setLessThan(new TstNode(s.charAt(0)));
+            }
             insert(s, n.getLessThan(), length);
         }
     }
 
-    private TstNode creatChain(String s, TstNode n) {
-        if (s.equals("")) {
-            return n;
-        }
-        n.setEquals(new TstNode(s.charAt(0)));
-        return creatChain(s.substring(1), n.getEquals());
-
-    }
 
     public boolean find(String s) {
         return find(s, root, s.length());
