@@ -63,7 +63,7 @@ public class SpellCheck {
     }
     public String[] checkWordsTst(String[] text, String[] dictionary) {
 
-        TstNode root = new TstNode('m');
+        TstNode root = new TstNode('l');
         Tst dict = new Tst(root);
         ArrayList<String> incorrectList = new ArrayList<>();
 
@@ -74,7 +74,7 @@ public class SpellCheck {
             dict.insert(dictionary[i]);
         }
 
-        TstNode incorrectRoot = new TstNode('m');
+        TstNode incorrectRoot = new TstNode('l');
         Tst incorrect = new Tst(incorrectRoot);
 
         for (int i = 0; i < text.length; i++) {
