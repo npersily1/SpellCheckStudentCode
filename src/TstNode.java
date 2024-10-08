@@ -1,3 +1,8 @@
+// This class represents a node in a Ternary Search Tree which contains wors
+
+
+
+
 public class TstNode {
     private char letter;
     private TstNode lessThan;
@@ -5,9 +10,6 @@ public class TstNode {
     private TstNode greaterThan;
     private boolean isWord;
 
-    public TstNode() {
-
-    }
     public TstNode(char letter) {
         this.letter = letter;
     }

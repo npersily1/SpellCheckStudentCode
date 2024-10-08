@@ -21,9 +21,10 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary) {
 
-        return checkWordsTst(text,dictionary);
-  //     return checkWordsTrie(text,dictionary);
+        return checkWordsTst(text, dictionary);
+        //     return checkWordsTrie(text,dictionary);
     }
+
     public String[] checkWordsTrie(String[] text, String[] dictionary) {
 
 
@@ -38,6 +39,7 @@ public class SpellCheck {
         // ArrayList to be later converted into array to return
         ArrayList<String> incorrectList = new ArrayList<>();
 
+
         // Add everyword to the dict
         for (int i = 0; i < dictionary.length; i++) {
             dict.insert(dictionary[i]);
@@ -45,7 +47,7 @@ public class SpellCheck {
 
         // For every word
         for (int i = 0; i < text.length; i++) {
-            
+
             // If it is not in the dictionary
             if (!dict.find(text[i])) {
                 // If it is not already in the list of incorrect words.
@@ -61,22 +63,29 @@ public class SpellCheck {
 
         return incorrectList.toArray(new String[incorrectList.size()]);
     }
+
     public String[] checkWordsTst(String[] text, String[] dictionary) {
 
+        // Initialize the Trie of the dictionary and its root
         TstNode root = new TstNode('l');
         Tst dict = new Tst(root);
-        ArrayList<String> incorrectList = new ArrayList<>();
 
-        dict.insert(dictionary[dictionary.length/2]);
 
-        for (int i = 0; i < dictionary.length; i++) {
+        // Insert the dictionary into the TST. Starting from the middle and expanding outwards creates the optimal TST
+        int half = dictionary.length / 2;
+        dict.insert(dictionary[half]);
+        for (int i = 1; i < half; i++) {
 
-            dict.insert(dictionary[i]);
+            dict.insert(dictionary[half + i]);
+            dict.insert(dictionary[half - i]);
         }
+        dict.insert(dictionary[0]);
 
         TstNode incorrectRoot = new TstNode('l');
         Tst incorrect = new Tst(incorrectRoot);
+        ArrayList<String> incorrectList = new ArrayList<>();
 
+        // Same process as for a regular trie
         for (int i = 0; i < text.length; i++) {
             if (!dict.find(text[i])) {
                 if (!incorrect.find(text[i])) {
@@ -86,7 +95,6 @@ public class SpellCheck {
             }
 
         }
-
 
         return incorrectList.toArray(new String[incorrectList.size()]);
 
